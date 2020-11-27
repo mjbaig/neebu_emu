@@ -1,5 +1,8 @@
-#[path = "cpu/op_codes.rs"] mod op_codes;
+// mod bus;
+use crate::bus::Bus;
 
-pub fn test() {
-    op_codes::test2();
+pub trait CPU {
+    fn new(bus: Bus) -> Self;
+    fn read(&self, address: u16, is_read_only: bool);
+    fn write(&self, address: u16, data: u8);
 }
