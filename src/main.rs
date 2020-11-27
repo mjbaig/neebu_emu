@@ -9,9 +9,9 @@ use crate::cpu::CPU;
 
 fn main() {
 
-    let bus: Bus = Bus{ ram: [0; 64 * 1024]};
+    let mut bus: Bus = Bus{ ram: [0; 64 * 1024]};
 
-    let cpu: OLC6502 = CPU::new(bus);
+    let mut cpu: OLC6502 = CPU::new(bus);
 
     cpu.read(0, false);
     cpu.write(0,0);

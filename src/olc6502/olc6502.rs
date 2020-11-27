@@ -28,11 +28,13 @@ impl CPU for OLC6502 {
         }
     }
 
-    fn read(&self, address: u16, is_read_only: bool) {
+    fn read(&mut self, address: u16, is_read_only: bool) {
+        self.x_register = self.x_register + 1;
+        println!("{}", self.x_register);
         &self.bus.read(address, false);
     }
 
-    fn write(&self, address: u16, data: u8) {
+    fn write(&mut self, address: u16, data: u8) {
         &self.bus.write(address, data);
     }
 }
