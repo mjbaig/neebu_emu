@@ -1,4 +1,5 @@
 #[path = "olc6502/olc6502.rs"] mod olc6502;
+#[path = "olc6502/status_flags.rs"] mod status_flags;
 mod bus;
 mod cpu;
 
