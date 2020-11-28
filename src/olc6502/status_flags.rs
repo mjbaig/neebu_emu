@@ -1,3 +1,5 @@
+use crate::olc6502::OLC6502;
+
 pub enum StatusFlags {
     C, // Carry
     Z, // Zero (when the result of an operation equals zero)
@@ -21,5 +23,13 @@ impl StatusFlags {
             StatusFlags::V => 1 << 6,
             StatusFlags::N => 1 << 7
         }
+    }
+
+    pub fn get_flag(&self) -> u8 {
+        return self.value();
+    } 
+
+    pub fn set_flag(&self, cpu: &mut OLC6502) {
+        cpu.status_register = 0b00000001;
     }
 }
