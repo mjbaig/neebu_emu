@@ -5,8 +5,8 @@ pub struct Bus {
 
 impl Bus {
 
-    pub fn write(&self, address: u16, data: u8) {
-        println!("hi");
+    pub fn write(&mut self, address: u16, data: u8) {
+        self.ram[address as usize] = data;
     }
     
     pub fn read(&self, address: u16, is_read_only: bool) {

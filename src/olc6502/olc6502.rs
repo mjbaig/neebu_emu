@@ -3,8 +3,8 @@ use crate::cpu::CPU;
 use crate::status_flags::StatusFlags;
 
 
-pub struct OLC6502 {
-    pub bus: Bus,
+pub struct OLC6502<'a> {
+    pub bus: &'a mut Bus,
     accumulator_register: u8,
     x_register: u8,
     y_register: u8,
@@ -14,9 +14,9 @@ pub struct OLC6502 {
 }
 
 
-impl CPU for OLC6502 {
+impl<'a> CPU<'a> for OLC6502<'a> {
 
-    fn new(bus: Bus) -> OLC6502 {
+    fn new(bus: &'a mut Bus) -> OLC6502<'a> {
         OLC6502{
             bus: bus,
             accumulator_register: 0x00,

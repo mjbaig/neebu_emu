@@ -9,11 +9,13 @@ use crate::cpu::CPU;
 
 fn main() {
 
-    let mut bus: Bus = Bus{ ram: [0; 64 * 1024]};
+    let mut cpu_bus: Bus = Bus{ ram: [0; 64 * 1024]};
 
-    let mut cpu: OLC6502 = CPU::new(bus);
+    let mut cpu: OLC6502 = CPU::new(&mut cpu_bus);
 
     cpu.read(0, false);
-    cpu.write(0,0);
+    cpu.write(1,1);
+
+    println!("{:?}", cpu_bus.ram[1]);
 
 }
