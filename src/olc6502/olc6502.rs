@@ -33,9 +33,10 @@ impl CPU for OLC6502 {
         }
     }
 
-    fn clock(&mut self){
+    fn tick(&mut self){
         let bus_data = BusData{method: ReadWrite::WRITE, address: 0x00, data: Some(0x01)};
         self.to_bus_tx.send(bus_data).unwrap();
+        println!("tick");
     }
 }
 

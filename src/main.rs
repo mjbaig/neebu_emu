@@ -10,7 +10,7 @@ use crate::cpu::CPU;
 
 use std::sync::mpsc::{Sender, Receiver};
 use std::sync::mpsc;
-use std::thread;
+use std::{thread, time};
 
 fn main() {
 
@@ -23,8 +23,18 @@ fn main() {
 
     let mut cpu: OLC6502 = CPU::new(cpu_to_bus_tx, to_cpu_rx);
 
-    cpu.clock();
+    let ten_millis = time::Duration::from_millis(1000);
+    let now = time::Instant::now();
 
-    bus.clock();
+    thread::spawn(move || {
+        loop {
+            cpu.tick();
+            thread::sleep(ten_millis);
+        }
+    });
+
+    loop {
+        bus.tick();
+    }
 
 }

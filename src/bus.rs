@@ -16,7 +16,7 @@ impl Bus {
         println!("hi");
     }
 
-    pub fn clock(&self) {
+    pub fn tick(&self) {
         let bus_data = self.to_bus_rx.recv().unwrap();
         println!("address:{} data:{:?}", bus_data.address, bus_data.data);
     }
