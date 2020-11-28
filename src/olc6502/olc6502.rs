@@ -1,8 +1,11 @@
+mod addressing_modes;
+
 use crate::bus::BusData;
 use crate::bus::ReadWrite;
 use crate::cpu::CPU;
 use crate::status_flags::StatusFlags;
 use std::sync::mpsc::{Sender, Receiver};
+use addressing_modes::AddressingMode;
 
 
 
@@ -34,8 +37,9 @@ impl CPU for OLC6502 {
     }
 
     fn tick(&mut self){
-        let bus_data = BusData{method: ReadWrite::WRITE, address: 0x00, data: Some(0x01)};
+        let bus_data = BusData{method: ReadWrite::WRITE, address: self.program_counter, data: Some(0x01)};
         self.to_bus_tx.send(bus_data).unwrap();
+        addressing_modes::execute_addressing_mode(self, AddressingMode::IMP);
         println!("tick");
     }
 }
