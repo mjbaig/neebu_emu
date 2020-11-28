@@ -21,9 +21,10 @@ fn main() {
 
     let mut bus: Bus = Bus{ ram: [0; 64 * 1024], to_bus_rx: to_bus_rx, to_cpu_tx: to_cpu_tx};
 
-    let mut cpu: OLC6502 = CPU::new(bus, cpu_to_bus_tx, to_cpu_rx);
+    let mut cpu: OLC6502 = CPU::new(cpu_to_bus_tx, to_cpu_rx);
 
-    cpu.read(0, false);
-    cpu.write(0,0);
+    cpu.clock();
+
+    bus.clock();
 
 }

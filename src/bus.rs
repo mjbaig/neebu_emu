@@ -16,12 +16,17 @@ impl Bus {
         println!("hi");
     }
 
+    pub fn clock(&self) {
+        let bus_data = self.to_bus_rx.recv().unwrap();
+        println!("address:{} data:{:?}", bus_data.address, bus_data.data);
+    }
+
 }
 
 pub struct BusData {
-    method: ReadWrite,
-    address: u16,
-    data: Option<u8>
+    pub method: ReadWrite,
+    pub address: u16,
+    pub data: Option<u8>
 }
 
 pub enum ReadWrite {
