@@ -1,5 +1,5 @@
 
-use crate::olc6502::OLC6502;
+use crate::nes_6502::NES6502;
 
 pub enum AddressingMode {
     IMP,
@@ -16,7 +16,7 @@ pub enum AddressingMode {
     IZY
 }
 
-pub fn execute_addressing_mode(cpu: &mut OLC6502, addressing_mode: AddressingMode) {
+pub fn execute_addressing_mode(cpu: &mut NES6502, addressing_mode: AddressingMode) {
     match addressing_mode {
         IMP => implied(cpu),
         IMM => immediate(cpu),
@@ -34,62 +34,62 @@ pub fn execute_addressing_mode(cpu: &mut OLC6502, addressing_mode: AddressingMod
     };
 }
 
-fn implied(cpu: &mut OLC6502) -> u8 {
+fn implied(cpu: &mut NES6502) -> u8 {
     cpu.program_counter += 1;
     return 0;
 }
 
-fn immediate(cpu: &mut OLC6502) -> u8 {
+fn immediate(cpu: &mut NES6502) -> u8 {
     cpu.program_counter += 1;
     return 0;
 }
 
-fn zero_page(cpu: &mut OLC6502) -> u8 {
+fn zero_page(cpu: &mut NES6502) -> u8 {
     cpu.program_counter += 1;
     return 0;
 }
 
-fn zero_page_with_x_offset(cpu: &mut OLC6502) -> u8 {
+fn zero_page_with_x_offset(cpu: &mut NES6502) -> u8 {
     cpu.program_counter += 1;
     return 0;
 }
 
-fn zero_page_with_y_offset(cpu: &mut OLC6502) -> u8 {
+fn zero_page_with_y_offset(cpu: &mut NES6502) -> u8 {
     cpu.program_counter += 1;
     return 0;
 }
 
-fn relative(cpu: &mut OLC6502) -> u8 {
+fn relative(cpu: &mut NES6502) -> u8 {
     cpu.program_counter += 1;
     return 0;
 }
 
-fn absolute(cpu: &mut OLC6502) -> u8 {
+fn absolute(cpu: &mut NES6502) -> u8 {
     cpu.program_counter += 1;
     return 0;
 }
 
-fn absolute_with_x_offset(cpu: &mut OLC6502) -> u8 {
+fn absolute_with_x_offset(cpu: &mut NES6502) -> u8 {
     cpu.program_counter += 1;
     return 0;
 }
 
-fn absolute_with_y_offset(cpu: &mut OLC6502) -> u8 {
+fn absolute_with_y_offset(cpu: &mut NES6502) -> u8 {
     cpu.program_counter += 1;
     return 0;
 }
 
-fn indirect(cpu: &mut OLC6502) -> u8 {
+fn indirect(cpu: &mut NES6502) -> u8 {
     cpu.program_counter += 1;
     return 0;
 }
 
-fn indirect_x(cpu: &mut OLC6502) -> u8 {
+fn indirect_x(cpu: &mut NES6502) -> u8 {
     cpu.program_counter += 1;
     return 0;
 }
 
-fn indirect_y(cpu: &mut OLC6502) -> u8 {
+fn indirect_y(cpu: &mut NES6502) -> u8 {
     cpu.program_counter += 1;
     return 0;
 }

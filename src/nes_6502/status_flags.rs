@@ -1,4 +1,4 @@
-use crate::olc6502::OLC6502;
+use crate::nes_6502::NES6502;
 
 pub enum StatusFlags {
     C, // Carry
@@ -29,7 +29,7 @@ impl StatusFlags {
         return self.value();
     } 
 
-    pub fn set_flag(&self, cpu: &mut OLC6502) {
+    pub fn set_flag(&self, cpu: &mut NES6502) {
         cpu.status_register = 0b00000001;
     }
 }

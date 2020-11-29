@@ -9,7 +9,7 @@ use addressing_modes::AddressingMode;
 
 
 
-pub struct OLC6502 {
+pub struct NES6502 {
     accumulator_register: u8,
     x_register: u8,
     y_register: u8,
@@ -27,17 +27,17 @@ pub struct OLC6502 {
     pub to_cpu_rx: Receiver<BusData>
 }
 
-impl OLC6502 {
+impl NES6502 {
     fn fetch() {
         println!("called fetch");
     }
 }
 
 
-impl CPU for OLC6502 {
+impl CPU for NES6502 {
 
-    fn new(to_bus_tx: Sender<BusData>, to_cpu_rx: Receiver<BusData>) -> OLC6502 {
-        OLC6502 {
+    fn new(to_bus_tx: Sender<BusData>, to_cpu_rx: Receiver<BusData>) -> NES6502 {
+        NES6502 {
             accumulator_register: 0x00,
             x_register: 0x00,
             y_register: 0x00,

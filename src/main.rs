@@ -1,11 +1,11 @@
-#[path = "olc6502/olc6502.rs"] mod olc6502;
-#[path = "olc6502/status_flags.rs"] mod status_flags;
+#[path = "nes_6502/nes_6502.rs"] mod nes_6502;
+#[path = "nes_6502/status_flags.rs"] mod status_flags;
 mod bus;
 mod cpu;
 
 use crate::bus::Bus;
 use crate::bus::BusData;
-use crate::olc6502::OLC6502;
+use crate::nes_6502::NES6502;
 use crate::cpu::CPU;
 
 use std::sync::mpsc::{Sender, Receiver};
@@ -21,7 +21,7 @@ fn main() {
 
     let mut bus: Bus = Bus{ ram: [0; 64 * 1024], to_bus_rx: to_bus_rx, to_cpu_tx: to_cpu_tx};
 
-    let mut cpu: OLC6502 = CPU::new(cpu_to_bus_tx, to_cpu_rx);
+    let mut cpu: NES6502 = CPU::new(cpu_to_bus_tx, to_cpu_rx);
 
     let ten_millis = time::Duration::from_millis(1000);
     let now = time::Instant::now();
