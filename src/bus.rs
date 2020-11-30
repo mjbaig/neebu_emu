@@ -18,7 +18,12 @@ impl Bus {
 
     pub fn tick(&self) {
         let bus_data = self.to_bus_rx.recv().unwrap();
-        println!("address:{} data:{:?}", bus_data.address, bus_data.data);
+        let data = bus_data.data;
+        let address = bus_data.address;
+        match data {
+            Option::Some(_) => println!("address:{} data:{:?}", address, data.unwrap()),
+            Option::None => println!("no data was supplied in this request")
+        }
     }
 
 }

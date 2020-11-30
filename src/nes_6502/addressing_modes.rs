@@ -34,11 +34,13 @@ pub fn execute_addressing_mode(cpu: &mut NES6502, addressing_mode: AddressingMod
     };
 }
 
+// Means that this op code doesn't need any data to do its job
 fn implied(cpu: &mut NES6502) -> u8 {
-    cpu.program_counter += 1;
+    cpu.fetched = cpu.accumulator_register;
     return 0;
 }
 
+// Means that the instruction expects the next byte to be the values that it needs
 fn immediate(cpu: &mut NES6502) -> u8 {
     cpu.program_counter += 1;
     return 0;

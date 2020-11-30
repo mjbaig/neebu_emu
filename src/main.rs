@@ -10,9 +10,15 @@ use crate::cpu::CPU;
 
 use std::sync::mpsc::{Sender, Receiver};
 use std::sync::mpsc;
+use mpsc_requests::channel;
 use std::{thread, time};
 
 fn main() {
+
+    let (requester, responder)
+        = channel::<BusData, BusData>();
+
+    let cpu_requester = requester.clone();
 
     let (to_bus_tx, to_bus_rx): (Sender<BusData>, Receiver<BusData>) = mpsc::channel();
     let cpu_to_bus_tx = to_bus_tx.clone();

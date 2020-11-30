@@ -28,8 +28,18 @@ pub struct NES6502 {
 }
 
 impl NES6502 {
-    fn fetch() {
+    fn fetch(&self) {
         println!("called fetch");
+    }
+
+    fn read(&self) -> u16 {
+        let bus_data = self.to_cpu_rx.recv().unwrap();
+        return bus_data.address;
+    }
+
+    fn write(&self) {
+        let bus_data = BusData{method: ReadWrite::WRITE, address: self.program_counter, data: Some(0x01)};
+        self.to_bus_tx.send(bus_data).unwrap();
     }
 }
 
